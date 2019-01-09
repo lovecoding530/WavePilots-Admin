@@ -1,0 +1,87 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row" *ngIf="mode == 'detail'">          
+          <div class="col-md-12">
+              <div class="card card-plain" *ngIf="team">
+                  <div class="card-header" data-background-color="blue">
+                      <h4 class="title">
+                          {{team.name}}
+
+                          <button (click)="onAddUser()" *ngIf="!newUser" title="Add User" class="btn btn-white btn-simple pull-right">
+                            <i class="material-icons">person_add</i>
+                            Add User
+                          </button>
+                      </h4>
+                      <p class="category">
+                        {{team.description}}  
+                      </p>
+                  </div>
+                  <div class="card-content table-responsive">
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>Email</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody *ngIf="userList">
+                            <tr *ngFor="let user of userList, let i = index">                                    
+                                <td>{{i + 1}}</td>
+                                <td>
+                                  <a [routerLink]="['user/', 'detail', user.$key]" *ngIf="!user.isCreated">{{user.nickname}}</a>
+                                  <ng2-autocompleter [(ngModel)]="user.name" *ngIf="user.isCreated" (onItemSelected)="onUserSelected(user, $event)"></ng2-autocompleter>
+                                </td>
+                                <td>{{user.email}}</td>
+                                <td class="td-actions text-right">
+                                    <button (click)="onSaveUser(user)" *ngIf="user.isUnsaved" class="btn btn-primary btn-simple btn-xs" rel="tooltip" title="" type="button" data-original-title="Save">
+                                        <i class="material-icons">save</i>
+                                    <div class="ripple-container"></div></button>
+                                    <button (click)="onRemoveUser(user)" class="btn btn-danger btn-simple btn-xs" rel="tooltip" title="" type="button" data-original-title="Remove">
+                                        <i class="material-icons">close</i>
+                                    <div class="ripple-container"></div></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row" *ngIf="mode == 'new'">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header" data-background-color="red">
+                      <h4 class="title">Create Team</h4>
+                      <p class="category">Create a new team...</p>
+                  </div>
+                  <div class="card-content">
+                      <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="form-group form-black label-floating is-empty">
+                                      <label class="control-label">Name</label>
+                                      <input formControlName="name" type="text" class="form-control" >
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="form-group form-black label-floating is-empty">
+                                      <label class="control-label">Description</label>
+                                      <input formControlName="description" type="text" class="form-control" >
+                                  </div>
+                              </div>
+                          </div>
+
+                          <button [disabled]="!form.valid" type="submit" class="btn btn-danger pull-right">Save</button>
+                          <div class="clearfix"></div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

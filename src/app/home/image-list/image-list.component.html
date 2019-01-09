@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Image List</h4>
+                        <p class="category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th class="col-md-2">Title</th>
+                                    <th class="col-md-4">Url</th>
+                                    <th>Likes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let image of imageList | async, let i = index">                                    
+                                    <td>{{i + 1}}</td>
+                                    <td><a [routerLink]="['/image/', image.$key]">{{image.title}}</a></td>
+                                    <td>{{image.url}}</td>
+                                    <td>{{image.likeCount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

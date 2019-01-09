@@ -1,0 +1,29 @@
+a { 
+    outline: none !important; 
+}
+.dropdown {
+    display: inline;
+}
+.dropdown button {
+    padding: 8px 24px !important;
+}
+
+.dropdown > button .caret {
+    margin-left: 4px !important;
+}
+
+.dropdown ul {
+    overflow-y: hidden !important;
+}
+
+.dropdown-menu {
+    /*max-height: 800px !important;*/
+}
+
+@media (min-width: 992px) {
+    .dropdown-menu {
+        opacity: 100 !important;
+        visibility: inherit;
+        margin-top: 0 !important;
+    }
+}

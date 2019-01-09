@@ -1,0 +1,128 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">
+                            Training List
+                            <button (click)="modal.open('lg')" title="Add Training" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">playlist_add</i>
+                                Add Training
+                            </button>
+                        </h4>
+                        <p class="category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-2">Video</th>
+                                    <th class="col-md-2">Title</th>
+                                    <th class="col-md-1">Type</th>
+                                    <th class="col-md-5">Description</th>
+                                    <th class="col-md-2">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let training of trainingList | async, let i = index">
+                                    <td>
+                                        <video-preview [videoUrl]="training.url" [width]="180" [height]="120"></video-preview>
+                                    </td>
+                                    <td>
+                                        {{training.title}}
+                                    </td>
+                                    <td>
+                                        {{training.type}}
+                                    </td>
+                                    <td>
+                                        {{training.description}}
+                                    </td>
+                                    <td>
+                                        {{training.date | date : 'mediumDate'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="onModalClosed()" (onDismiss)="onModalClosed()" #modal>
+                            <form #form="ngForm">
+                                <modal-header [show-close]="true">
+                                    <h4 class="modal-title">New Training</h4>
+                                </modal-header>
+                                <modal-body>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="text" [(ngModel)]="training.title" name="title" placeholder="Title" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-7">                                            
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <textarea rows="2" [(ngModel)]="training.description" name="description" placeholder="Description" class="form-control" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="text" [(ngModel)]="training.videoUrl" name="videoUrl" placeholder="Video URL" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">                                          
+                                            <div class="row">
+                                                <div class="col-sm-4 form-group">
+                                                    <label class="control-label">Content Type</label>
+                                                </div>
+                                                <div class="col-sm-8 dropdown">
+                                                    <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                                                        {{training.contentType || 'Select'}}
+                                                        <b class="caret"></b>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li *ngFor="let type of contentTypes">
+                                                            <a (click)="training.contentType = type">{{type}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4 form-group">
+                                                    <label class="control-label">Assignment</label>
+                                                </div>
+                                                <ng2-multipicker [(ngModel)]="training.assignment" name="assignments" [options]="assignments"></ng2-multipicker>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Note</label>
+                                            </div>
+                                            <ckeditor [(ngModel)]="content" name="note" debounce="500" required></ckeditor>
+                                        </div>
+                                    </div>
+                                </modal-body>
+                                <modal-footer>
+                                    <button type="button" 
+                                            class="btn btn-info" 
+                                            [disabled]="!form.valid || !training.contentType || !training.assignment" 
+                                            (click)="onSaveTraining()">Save</button>
+                                    <button type="button" 
+                                            class="btn" 
+                                            data-dismiss="modal" 
+                                            (click)="modal.dismiss()">Cancel</button>
+                                </modal-footer>
+                            </form>
+                        </modal>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+div.list-box {
+    height: 400px !important;
+    overflow: scroll;
+}
+.table tbody>tr>td.top-align{
+    vertical-align: top;
+}
+th {
+    border-left: solid 1px #999;
+    background: gray;
+    color: white;
+}
+td {
+    border-left: solid 1px #E1E1E1;
+}

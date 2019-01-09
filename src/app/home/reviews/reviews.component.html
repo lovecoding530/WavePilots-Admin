@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card card-plain">
+            <div class="card-header" data-background-color="red">
+                <h4 class="title">
+                    Reviews
+                </h4>
+                <p class="category">There are reviews.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let field of fieldNames" [width]="field.width">{{field.title}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let review of reviewList, let i = index">
+                            <td class="top-align" height="60">{{i+1}}</td>
+                            <td class="top-align">
+                                <a [routerLink]="['/home/review/', review.$key]">{{review.Username}}</a>
+                            </td>
+                            <td class="top-align">
+                                <a [routerLink]="['/home/review/', review.$key]">{{review.ItemTitle}}</a>
+                            </td>
+                            <td class="top-align">{{review.ParentName}}</td>
+                            <td class="top-align">{{review.Like}}</td>
+                            <td class="top-align">{{review.Dislike}}</td>
+                            <td class="top-align">{{review.Rate}}</td>
+                            <td class="top-align">
+                                  <button *ngIf="review.Enable"
+                                          [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Disable Review" type="button"
+                                          (click)="onPressDisable(review)">
+                                      <i class="material-icons">block</i>
+                                      <div class="ripple-container"></div>
+                                  </button>
+                                  <button *ngIf="!review.Enable"
+                                          [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Enable Review" type="button"
+                                          (click)="onPressEnable(review)">
+                                      <i class="material-icons">check</i>
+                                      <div class="ripple-container"></div>
+                                  </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

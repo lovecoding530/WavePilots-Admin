@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card card-plain">
+            <div class="card-header" data-background-color="red">
+                <h4 class="title">
+                    Carousels List
+                </h4>
+                <p class="category">There are carousels information.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th [width]="50"> - </th>
+                            <th *ngFor="let field of fieldNames" [width]="field.width">{{field.title}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let carousel of carouselsList, let i = index">
+                            <td class="td-actions text-right">
+                                <button [disabled]="i<=0 || this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Order Up" type="button"
+                                        (click)="onPressOrderUp(carousel)">
+                                    <i class="material-icons">keyboard_arrow_up</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                                <button [disabled]="i>=carouselsList.length-1 || this.loading" class="btn btn-primary btn-xs" rel="tooltip" title="Order Down" type="button"
+                                        (click)="onPressOrderDown(carousel)">
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                            <td class="top-align" height="60">
+                                {{i+1}}
+                            </td>
+                            <td class="top-align">{{carousel.type}}</td>
+                            <td class="top-align"><a (click)="onClickItem(carousel)">{{carousel.raw.Name}}</a></td>
+                            <td class="top-align">
+                                <img class="img-container" [src]="carousel.raw.ImageFullPath" alt="carousel avatar" width="50px" height="35px">
+                            </td>
+                            <td class="top-align">{{carousel.raw.AppLink}}</td>
+                            <td class="top-align">
+                                <button [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Remove from carousel" type="button"
+                                        (click)="onPressDelete(carousel)">
+                                    <i class="material-icons">delete</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

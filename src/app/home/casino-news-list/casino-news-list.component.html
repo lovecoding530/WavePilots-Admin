@@ -1,0 +1,67 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card card-plain">
+            <div class="card-header" data-background-color="red">
+                <h4 class="title">
+                    Casino News List
+                    <button [routerLink]="['/home/casinonews/', 'new', '']" title="Add a casino news" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">note_add</i>
+                                Add a casino news
+                    </button>
+                </h4>
+                <p class="category">There are news information.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let field of fieldNames" [width]="field.width">{{field.title}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let news of newsList, let i = index">
+                            <td class="td-actions text-right">
+                                <button [disabled]="i<=0 || this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Order Up" type="button"
+                                        (click)="onPressOrderUp(news)">
+                                    <i class="material-icons">keyboard_arrow_up</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                                <button [disabled]="i>=newsList.length-1 || this.loading" class="btn btn-primary btn-xs" rel="tooltip" title="Order Down" type="button"
+                                        (click)="onPressOrderDown(news)">
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                            <td class="top-align" height="60">{{i+1}}</td>
+                            <td class="top-align">
+                                <a [routerLink]="['/home/casinonews/', 'detail', news.$key]">{{news.raw.Name}}</a>
+                                <br>
+                                <button (click)="onRemoveFromCarousel(news)" 
+                                        [disabled]="loading"
+                                        class="btn btn-danger btn-xs" 
+                                        *ngIf="news.ref.isCarousel">Remove From Carousel</button>
+                                <button (click)="onAddToCarousel(news)"
+                                        [disabled]="loading"
+                                        class="btn btn-danger btn-xs"
+                                        *ngIf="!news.ref.isCarousel">Add to Carousel</button>
+                            </td>
+                            <td class="top-align">{{news.VisitedCount || 0}}</td>
+                            <td class="top-align">
+                                <img class="img-container" [src]="news.raw.ImageFullPath" alt="news avatar" width="50px" height="35px">
+                            </td>
+                            <td class="top-align">{{news.raw.Content}}</td>
+                            <td class="top-align">
+                                <button [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Remove from carousel" type="button"
+                                        (click)="onPressDelete(news)">
+                                    <i class="material-icons">delete</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

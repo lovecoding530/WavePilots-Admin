@@ -1,0 +1,71 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card card-plain">
+            <div class="card-header" data-background-color="red">
+                <h4 class="title">
+                    Slots List
+                    <button [routerLink]="['/home/slot/', 'new', '']" title="Add new slot" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">note_add</i>
+                                Add new slot
+                    </button>
+                </h4>
+                <p class="category">There are slot information.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let field of fieldNames" [width]="field.width">{{field.title}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let slot of slotsList, let i = index">
+                            <td class="td-actions text-right">
+                                <button [disabled]="i<=0 || this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Order Up" type="button"
+                                        (click)="onPressOrderUp(slot)">
+                                    <i class="material-icons">keyboard_arrow_up</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                                <button [disabled]="i>=slotsList.length-1 || this.loading" class="btn btn-primary btn-xs" rel="tooltip" title="Order Down" type="button"
+                                        (click)="onPressOrderDown(slot)">
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                            <td class="top-align" height="60">{{i+1}}</td>
+                            <td class="top-align">
+                                <a [routerLink]="['/home/slot/', 'detail', slot.$key]">{{slot.raw.Name}}</a><br>
+                                <button (click)="onRemoveFromCarousel(slot)" 
+                                        [disabled]="loading"
+                                        class="btn btn-danger btn-xs" 
+                                        *ngIf="slot.ref.isCarousel">Remove From Carousel</button>
+                                <button (click)="onAddToCarousel(slot)"
+                                        [disabled]="loading"
+                                        class="btn btn-danger btn-xs"
+                                        *ngIf="!slot.ref.isCarousel">Add to Carousel</button>
+
+                            </td>
+                            <td class="top-align">{{slot.ref.VisitedCount || 0}}</td>
+                            <td class="top-align">
+                                <img class="img-container" [src]="slot.raw.ImageFullPath" alt="slot avatar" width="50px" height="35px">
+                            </td>
+                            <td class="top-align">{{slot.ShortAppLink}}</td>
+                            <td class="top-align">{{slot.raw.MainOffer}}</td>
+                            <td class="top-align">
+                                <button [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Remove from carousel" type="button"
+                                        (click)="onPressDelete(slot)">
+                                    <i class="material-icons">delete</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+
+-->

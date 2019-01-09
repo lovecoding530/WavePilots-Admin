@@ -1,0 +1,94 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card card-plain">
+            <div class="card-header" data-background-color="red">
+                <h4 class="title">
+                    Casinos List
+                    <button [routerLink]="['/home/casino/', 'new', '']" title="Add new casino" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">note_add</i>
+                                Add new casino
+                    </button>
+                </h4>
+                <p class="category">There are casino information.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let field of fieldNames" [width]="field.width">{{field.title}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let casino of casinoList, let i = index">
+                            <td class="td-actions text-right">
+                                <button [disabled]="i<=0 || this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Order Up" type="button"
+                                        (click)="onPressOrderUp(casino)">
+                                    <i class="material-icons">keyboard_arrow_up</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                                <button [disabled]="i>=casinoList.length-1 || this.loading" class="btn btn-primary btn-xs" rel="tooltip" title="Order Down" type="button"
+                                        (click)="onPressOrderDown(casino)">
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                            <td class="top-align" height="60">{{i+1}}</td>
+                            <td class="top-align">
+                                <a [routerLink]="['/home/casino/', 'detail', casino.$key]">{{casino.raw.Name}}</a>
+                                <br>
+                                <button (click)="onRemoveFromCarousel(casino)" 
+                                        [disabled]="loading"
+                                        class="btn btn-danger btn-xs" 
+                                        *ngIf="casino.ref.isCarousel">Remove From Carousel</button>
+                                <button (click)="onAddToCarousel(casino)"
+                                        [disabled]="loading"
+                                        class="btn btn-danger btn-xs"
+                                        *ngIf="!casino.ref.isCarousel">Add to Carousel</button>
+
+                            </td>
+                            <td class="top-align">{{casino.ref.VisitedCount || 0}}</td>
+                            <td class="top-align">
+                                <img class="img-container" [src]="casino.raw.ImageFullPath" alt="casino avatar" width="50px" height="35px">
+                            </td>
+                            <td class="top-align">{{casino.ShortAppLink}}</td>
+                            <td class="top-align">{{casino.raw.Software}}</td>
+                            <td class="top-align">{{casino.raw.Website}}</td>
+                            <td class="top-align">{{casino.raw.WithdrawalMethods}}</td>
+                            <td class="top-align">{{casino.raw.DepositMethods}}</td>
+                            <td class="top-align">{{casino.raw.Currencies}}</td>
+                            <td class="top-align">{{casino.raw.Languages}}</td>
+                            <td class="top-align">{{casino.raw.Licenses}}</td>
+                            <td class="top-align">{{casino.raw.WithdrawalLimits}}</td>
+                            <td class="top-align">{{casino.raw.RestrictedCountries}}</td>
+                            <td class="top-align">{{casino.raw.CasinoType}}</td>
+                            <td class="top-align">{{casino.raw.ReturnToPlayer}}</td>
+                            <td class="top-align">{{casino.raw.AllowManualFlushing}}</td>
+                            <td class="top-align">{{casino.raw.LiveChat}}</td>
+                            <td class="top-align">{{casino.raw.Established}}</td>
+                            <td class="top-align">{{casino.raw.AffiliateProgram}}</td>
+                            <td class="top-align">{{casino.raw.Contacts}}</td>
+                            <td class="top-align">{{casino.raw.Owner}}</td>
+                            <td class="top-align">{{casino.raw.Rate}}</td>
+                            <td class="top-align">{{casino.raw.LaunchDate}}</td>
+                            <td class="top-align">
+                                <button [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Remove from carousel" type="button"
+                                        (click)="onPressDelete(casino)">
+                                    <i class="material-icons">delete</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                            
+                            <!--<td>{{user.email}}</td>
+                            <td>{{user.date | date: "MM/dd/y"}}</td>
+                            <td>Registered</td>-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+
+-->

@@ -1,0 +1,73 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="blue">
+                        <h4 class="title">
+                            Team List
+                            <button [routerLink]="['/home/group-team/', 'new', '']" title="Create Team" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">playlist_add</i>
+                                Create Team
+                            </button>
+                        </h4>
+                        <p class="category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Deacription</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let team of teamList | async, let i = index">                                    
+                                    <td>{{i + 1}}</td>
+                                    <td><a [routerLink]="['/home/group-team/', 'detail', team.$key]">{{team.name}}</a></td>
+                                    <td>{{team.description}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="green">
+                        <h4 class="title">
+                            Family List
+                            <button [routerLink]="['/home/group-family/', 'new', '']" title="Create Family" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">playlist_add</i>
+                                Create Family
+                            </button>
+                        </h4>
+                        <p class="category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Deacription</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let family of familyList | async, let i = index">                                    
+                                    <td>{{i + 1}}</td>
+                                    <td><a [routerLink]="['/home/group-family/', 'detail', family.$key]">{{family.name}}</a></td>
+                                    <td>{{family.description}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

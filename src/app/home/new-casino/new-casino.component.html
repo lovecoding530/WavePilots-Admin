@@ -1,0 +1,326 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-header" data-background-color="red" *ngIf="mode=='new'">
+                        <h4 class="title">New Casino</h4>
+                        <p class="category">Input all casino information and save.</p>
+                    </div>
+
+                    <div class="card-header" data-background-color="red" *ngIf="mode!='new'">
+                        <h4 class="title">Edit Casino</h4>
+                        <p class="category">Edit casino information which you want change, and save.</p>
+                    </div>
+
+                    <div class="card-content">
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">Name</label>
+                                                <input formControlName="Name" 
+                                                       type="text" 
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">Established</label>
+                                                <input formControlName="Established" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">App Link</label>
+                                                <input formControlName="AppLink" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">Software</label>
+                                                <input formControlName="Software" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">Withdrawal Methods</label>
+                                                <input formControlName="WithdrawalMethods" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="content image-container">
+                                            <img class="img-responsive" [src]="selectedImageURL || casino && casino.raw.ImageFullPath || '/assets/img/placeholder.png'">
+                                            <input type="file" (change)="onImageSelected($event)" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Main Offer :</label>
+                                        <input formControlName="MainOffer" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Main Offer Description:</label>
+                                        <input formControlName="MainOfferDescription" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngFor="let subOffer of alternativeOffers, let i = index">
+                                <div class="col-md-1">
+                                    <label class="control-label">{{i+1}}</label><br>
+                                    <button (click)="removeAlernativeOffer(subOffer)"
+                                            class="btn btn-danger btn-xs">
+                                            <i class="material-icons">delete</i>
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Alternative Offer :</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            [(ngModel)]="subOffer.title" 
+                                            [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Alternative Offer Description :</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            [(ngModel)]="subOffer.description" 
+                                            [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Link :</label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            [(ngModel)]="subOffer.link" 
+                                            [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button (click)="onAddAlernativeOffer()"
+                                            class="btn btn-success">Add alternative offer</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Deposit Methods</label>
+                                        <input formControlName="DepositMethods" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Currencies</label>
+                                        <input formControlName="Currencies" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Languages</label>
+                                        <input formControlName="Languages" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Licenses</label>
+                                        <input formControlName="Licenses" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Withdrawal Limits</label>
+                                        <input formControlName="WithdrawalLimits" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Restricted Countries</label>
+                                        <input formControlName="RestrictedCountries" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Casino Type</label>
+                                        <input formControlName="CasinoType" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group form-black stacked">
+                                        <label class="control-label">Lanch Date</label>
+                                        <input formControlName="LaunchDate" type="date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Return To Player</label>
+                                        <input formControlName="ReturnToPlayer" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Allow Manual Flushing</label>
+                                        <input formControlName="AllowManualFlushing" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Live Chat</label>
+                                        <input formControlName="LiveChat" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Affiliate Program</label>
+                                        <input formControlName="AffiliateProgram" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Contacts</label>
+                                        <input formControlName="Contacts" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Website</label>
+                                        <input formControlName="Website" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Owner</label>
+                                        <input formControlName="Owner" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Rate</label>
+                                        <input formControlName="Rate" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label class="control-label">Select Recommend Casinos</label>
+                                    <div class=" list-box">
+                                        <table class="table table-striped">
+                                            
+                                            <thead>
+                                                <tr>
+                                                    <th *ngFor="let field of fieldNames" [width]="field.width">{{field.title}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let casino of casinoList, let i = index">
+                                                    <td class="td-actions text-right">
+                                                        <input type="checkbox" [checked]="selectedCasino[i]" (change)="selectedCasino[i] = !selectedCasino[i]" />
+                                                    </td>
+                                                    <td class="top-align" height="60">{{i+1}}</td>
+                                                    <td class="top-align">
+                                                        {{casino.raw.Name}}
+                                                    </td>
+                                                    <td class="top-align">{{casino.ref.VisitedCount || 0}}</td>
+                                                    <td class="top-align">
+                                                        <img class="img-container" [src]="casino.raw.ImageFullPath" alt="casino avatar" width="50px" height="35px">
+                                                    </td>
+                                                    <td class="top-align">{{casino.ShortAppLink}}</td>
+                                                    <td class="top-align">{{casino.raw.Software}}</td>
+                                                    <td class="top-align">{{casino.raw.Website}}</td>
+                                                    <td class="top-align">{{casino.raw.WithdrawalMethods}}</td>
+                                                    <td class="top-align">{{casino.raw.DepositMethods}}</td>
+                                                    <td class="top-align">{{casino.raw.Currencies}}</td>
+                                                    <td class="top-align">{{casino.raw.Languages}}</td>
+                                                    <td class="top-align">{{casino.raw.Licenses}}</td>
+                                                    <td class="top-align">{{casino.raw.WithdrawalLimits}}</td>
+                                                    <td class="top-align">{{casino.raw.RestrictedCountries}}</td>
+                                                    <td class="top-align">{{casino.raw.CasinoType}}</td>
+                                                    <td class="top-align">{{casino.raw.ReturnToPlayer}}</td>
+                                                    <td class="top-align">{{casino.raw.AllowManualFlushing}}</td>
+                                                    <td class="top-align">{{casino.raw.LiveChat}}</td>
+                                                    <td class="top-align">{{casino.raw.Established}}</td>
+                                                    <td class="top-align">{{casino.raw.AffiliateProgram}}</td>
+                                                    <td class="top-align">{{casino.raw.Contacts}}</td>
+                                                    <td class="top-align">{{casino.raw.Owner}}</td>
+                                                    <td class="top-align">{{casino.raw.Rate}}</td>
+                                                    <td class="top-align">{{casino.raw.LaunchDate}}</td>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div clss="col-md-4">
+                                    <button (click)="onDelete()" [disabled]="isLoading" class="btn btn-danger pull-right" *ngIf="mode!='new'">Delete</button>
+                                    <button (click)="onSubmit(form)" [disabled]="!form.valid || isLoading" type="submit" class="btn btn-success pull-right">Save</button>
+                                    <button (click)="onCancel()" [disabled]="isLoading" class="btn btn-error pull-right">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalChannel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title" id="myModalLabel">Create Channel</h5>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" (click)="createChannel()" class="btn btn-success btn-round">Create</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card card-plain">
+            <div class="card-header" data-background-color="red">
+                <h4 class="title">
+                    Bonus Games List
+                    <button [routerLink]="['/home/bonus/', 'new', '']" title="Add new bonus game" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">note_add</i>
+                                Add new bonus game
+                    </button>
+                </h4>
+                <p class="category">There are bonus game information.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let field of fieldNames" [width]="field.width">{{field.title}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let bonus of bonusList, let i = index">
+                            <td class="td-actions text-right">
+                                <button [disabled]="i<=0 || this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Order Up" type="button"
+                                        (click)="onPressOrderUp(bonus)">
+                                    <i class="material-icons">keyboard_arrow_up</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                                <button [disabled]="i>=bonusList.length-1 || this.loading" class="btn btn-primary btn-xs" rel="tooltip" title="Order Down" type="button"
+                                        (click)="onPressOrderDown(bonus)">
+                                    <i class="material-icons">keyboard_arrow_down</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                            <td class="top-align" height="60">
+                                {{i+1}}
+                            </td>
+                            <td class="top-align">
+                                <a [routerLink]="['/home/bonus/', 'detail', bonus.$key]">{{bonus.raw.Name}}</a>
+                                <br>
+                                <button (click)="onRemoveFromCarousel(bonus)" 
+                                        [disabled]="loading"
+                                        class="btn btn-danger btn-xs" 
+                                        *ngIf="bonus.ref.isCarousel">Remove From Carousel</button>
+                                <button (click)="onAddToCarousel(bonus)"
+                                        [disabled]="loading"
+                                        class="btn btn-danger btn-xs"
+                                        *ngIf="!bonus.ref.isCarousel">Add to Carousel</button>
+                                <br>
+                                <button (click)="onAddToBannerAd(bonus)"
+                                        [disabled]="loading"
+                                        class="btn btn-primary btn-xs"
+                                        *ngIf="!bonus.ref.isBanner">Set as Banner Ad</button>
+                                <button (click)="onRemoveFromBannerAd(bonus)"
+                                        [disabled]="loading"
+                                        class="btn btn-primary btn-xs"
+                                        *ngIf="bonus.ref.isBanner">Remove from Banner Ad</button>
+                            </td>
+                            <td class="top-align">{{bonus.ref.VisitedCount || 0}}</td>
+                            <td class="top-align">
+                                <img class="img-container" [src]="bonus.raw.ImageFullPath" alt="bonus avatar" width="50px" height="35px">
+                            </td>
+                            <td class="top-align">{{bonus.ShortAppLink}}</td>
+                            <td class="top-align">{{bonus.raw.Type}}</td>
+                            <td class="top-align">{{bonus.raw.BonusValue}}</td>
+                            <td class="top-align">{{bonus.raw.BonusCode}}</td>
+                            <td class="top-align">{{bonus.raw.Featured}}</td>
+                            <td class="top-align">{{bonus.raw.FreeSpin}}</td>
+                            <td class="top-align">{{bonus.raw.MatchBonus}}</td>
+                            <td class="top-align">
+                                <button [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Remove from carousel" type="button"
+                                        (click)="onPressDelete(bonus)">
+                                    <i class="material-icons">delete</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </td>
+                            <!--<td>{{user.email}}</td>
+                            <td>{{user.date | date: "MM/dd/y"}}</td>
+                            <td>Registered</td>-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

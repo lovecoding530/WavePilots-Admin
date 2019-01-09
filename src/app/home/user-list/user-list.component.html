@@ -1,0 +1,64 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">
+                            User List
+                        </h4>
+                        <p class="category">There are list of registered users on our database.</p>
+                    </div>
+                    <div class="content-table table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">No</th>
+                                    <th class="col-md-1">Avatar</th>
+                                    <th class="col-md-2">Ninkname</th>
+                                    <th class="col-md-4">Email</th>
+                                    <th calss="col-md-3">Country</th>
+                                    <th calss="col-md-1">-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of userList | async, let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                        <img class="img-circle img-container" [src]="user.Avatar" alt="User avatar" width="50px" height="50px">
+                                    </td>
+                                    <!--<td><a [routerLink]="['/home/user/', 'detail', user.uid]">{{user.Username}}</a></td>-->
+                                    <td *ngIf="user.isDisabled"><div class="red-text">{{user.Username}}</div></td>
+                                    <td *ngIf="!user.isDisabled">{{user.Username}}</td>
+                                    <td>{{user.Email}}</td>
+                                    <td>{{user.Country}}</td>
+                                    <td>
+                                        <button *ngIf="user.isDisabled"
+                                                [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Enable user" type="button"
+                                                (click)="onEnableUser(user)">
+                                            <i class="material-icons">check</i>
+                                            <div class="ripple-container"></div>
+                                        </button>
+                                        <button *ngIf="!user.isDisabled"
+                                                [disabled]="this.loading" class="btn btn-danger btn-xs" rel="tooltip" title="Disable user" type="button"
+                                                (click)="onDisableUser(user)">
+                                            <i class="material-icons">block</i>
+                                            <div class="ripple-container"></div>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<button [routerLink]="['/home/user/', 'new', '']" title="Add User" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">person_add</i>
+                                Add User
+                            </button>
+-->

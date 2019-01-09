@@ -1,0 +1,135 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-header" data-background-color="red" *ngIf="mode=='new'">
+                        <h4 class="title">New Slot</h4>
+                        <p class="category">Input all slot information and save.</p>
+                    </div>
+
+                    <div class="card-header" data-background-color="red" *ngIf="mode!='new'">
+                        <h4 class="title">Edit Slot</h4>
+                        <p class="category">Edit slot information which you want change, and save.</p>
+                    </div>
+
+                    <div class="card-content">
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">Name</label>
+                                                <input formControlName="Name" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">App Link</label>
+                                                <input formControlName="AppLink" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">Main Offer</label>
+                                                <input formControlName="MainOffer" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col img-card" *ngFor="let image of subImages">
+                                                    <img class="additional" 
+                                                        src="{{image.fullpath}}"
+                                                        (click)="onPressRemoveImage(image)" />
+                                                </div>
+                                                <div class="col img-card" *ngIf="!isLoading">
+                                                    <img class="additional" 
+                                                        src="assets/img/add_image.png" />
+                                                    <input type="file" (change)="onPressAddImage($event)" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="content image-container">
+                                            <img class="img-responsive" [src]="selectedImageURL || slot && slot.raw.ImageFullPath || '/assets/img/placeholder.png'">
+                                            <input type="file" (change)="onImageSelected($event)" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label class="control-label">Select Relate Casinos</label>
+                                    <div class=" list-box">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th *ngFor="let field of fieldNames" [width]="field.width">{{field.title}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let casino of casinoList, let i = index">
+                                                    <td class="td-actions text-right">
+                                                        <input type="checkbox" [checked]="selectedCasino[i]" (change)="selectedCasino[i] = !selectedCasino[i]" />
+                                                    </td>
+                                                    <td class="top-align" height="60">{{i+1}}</td>
+                                                    <td class="top-align">
+                                                        {{casino.raw.Name}}
+                                                    </td>
+                                                    <td class="top-align">{{casino.ref.VisitedCount || 0}}</td>
+                                                    <td class="top-align">
+                                                        <img class="img-container" [src]="casino.raw.ImageFullPath" alt="casino avatar" width="50px" height="35px">
+                                                    </td>
+                                                    <td class="top-align">{{casino.ShortAppLink}}</td>
+                                                    <td class="top-align">{{casino.raw.Software}}</td>
+                                                    <td class="top-align">{{casino.raw.Website}}</td>
+                                                    <td class="top-align">{{casino.raw.WithdrawalMethods}}</td>
+                                                    <td class="top-align">{{casino.raw.DepositMethods}}</td>
+                                                    <td class="top-align">{{casino.raw.Currencies}}</td>
+                                                    <td class="top-align">{{casino.raw.Languages}}</td>
+                                                    <td class="top-align">{{casino.raw.Licenses}}</td>
+                                                    <td class="top-align">{{casino.raw.WithdrawalLimits}}</td>
+                                                    <td class="top-align">{{casino.raw.RestrictedCountries}}</td>
+                                                    <td class="top-align">{{casino.raw.CasinoType}}</td>
+                                                    <td class="top-align">{{casino.raw.ReturnToPlayer}}</td>
+                                                    <td class="top-align">{{casino.raw.AllowManualFlushing}}</td>
+                                                    <td class="top-align">{{casino.raw.LiveChat}}</td>
+                                                    <td class="top-align">{{casino.raw.Established}}</td>
+                                                    <td class="top-align">{{casino.raw.AffiliateProgram}}</td>
+                                                    <td class="top-align">{{casino.raw.Contacts}}</td>
+                                                    <td class="top-align">{{casino.raw.Owner}}</td>
+                                                    <td class="top-align">{{casino.raw.Rate}}</td>
+                                                    <td class="top-align">{{casino.raw.LaunchDate}}</td>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div clss="col-md-4">
+                                    <button (click)="onDelete()" [disabled]="isLoading" class="btn btn-danger pull-right" *ngIf="mode!='new'">Delete</button>
+                                    <button (click)="onSubmit(form)" [disabled]="!form.valid || isLoading" type="submit" class="btn btn-success pull-right">Save</button>
+                                    <button (click)="onCancel()" [disabled]="isLoading" class="btn btn-error pull-right">Cancel</button>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

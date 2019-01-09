@@ -1,0 +1,13 @@
+<div class="col-md-12">
+    <div class="form-group form-black label-floating is-empty">
+      <input type="text" class="form-control validate filter-input" [(ngModel)]="value" (keyup)=filter() (focus)="filter()" 
+            [placeholder]="'User name'" autocomplete="off">
+    </div>
+    <div class="drop-down" *ngIf="filteredList">
+        <ul>
+            <li *ngFor="let item of filteredList" >
+                <a (click)="select(item)">{{item.nickname}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

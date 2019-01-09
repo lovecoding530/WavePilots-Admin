@@ -1,0 +1,10 @@
+.container-fluid {
+    padding: 0 10% !important;
+}
+.dropdown label {
+    margin-right: 8px !important;
+}
+
+.dropdown .caret {
+    margin-left: 4px !important;
+}

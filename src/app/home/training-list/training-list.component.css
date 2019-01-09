@@ -1,0 +1,17 @@
+modal .form-group {
+    margin: 0px !important;
+}
+
+modal label.control-label {
+    font-size: 14px !important;
+}
+
+modal .dropdown .dropdown-toggle {
+    padding: 8px 16px !important;
+}
+
+modal modal-footer button {
+    padding: 6px 24px !important;
+    margin-right: 24px !important;
+    margin-bottom: 12px !important;
+}

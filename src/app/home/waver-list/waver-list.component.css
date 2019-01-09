@@ -1,0 +1,27 @@
+.img-container {
+    width: 50px;
+    height: 50px;
+}
+
+.img-container img {
+    border-radius: 50%;
+}
+
+.table tbody>tr>td.top-align{
+    vertical-align: top;
+    max-height: 100px;
+}
+th {
+    border-left: solid 1px #999;
+    background: gray;
+    color: white;
+}
+td {
+    border-left: solid 1px #E1E1E1;
+}
+.red-text {
+    color: red;
+    border-bottom: 1px solid red; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+}

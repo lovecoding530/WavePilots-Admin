@@ -1,0 +1,55 @@
+.col-md-12 {
+    padding: 0 !important;
+}
+
+.col-md-12 .form-group {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.col-md-12 .form-group input {
+    margin: 0 !important;
+}
+
+.drop-down {
+    display: block !important;
+}
+.drop-down > ul {
+    position: relative;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    /*min-width: 160px;*/
+    padding: 5px 0;
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.drop-down > ul > li {
+    list-style: none;
+    display: block;
+}
+
+.drop-down > ul > li > a {
+    display: block;
+    color: #333;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 4px;
+    border-radius: 8px;
+}
+
+.drop-down > ul > li > :hover {
+    background-color: #4caf50;
+    color: #ffffff;
+}

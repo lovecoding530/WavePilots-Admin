@@ -1,0 +1,12 @@
+.avatar {
+    width: 50px;
+    height: auto;
+}
+.item-image {
+    width: 120px;
+    height: auto;
+}
+.bottom-line {
+    border-bottom: 1px solid #EEE;
+    padding: 15px !important;
+}

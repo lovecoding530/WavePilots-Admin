@@ -1,0 +1,59 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-header" data-background-color="red" *ngIf="mode=='new'">
+                        <h4 class="title">New Casino News</h4>
+                        <p class="category">Input all news information and save.</p>
+                    </div>
+
+                    <div class="card-header" data-background-color="red" *ngIf="mode!='new'">
+                        <h4 class="title">Edit Casino News</h4>
+                        <p class="category">Edit news information which you want change, and save.</p>
+                    </div>
+
+                    <div class="card-content">
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">Title</label>
+                                                <input formControlName="Name" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-black label-floating">
+                                                <label class="control-label">News Content</label>
+                                                <textarea formControlName="Content" type="text" class="form-control" rows="5"></textarea>
+                                                <!--<input formControlName="AppLink" type="text" class="form-control">-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="content image-container">
+                                            <img class="img-responsive" [src]="selectedImageURL || news && news.raw.ImageFullPath || '/assets/img/placeholder.png'">
+                                            <input type="file" (change)="onImageSelected($event)" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button (click)="onDelete()" [disabled]="isLoading" class="btn btn-danger pull-right" *ngIf="mode!='new'">Delete</button>
+                            <button (click)="onSubmit(form)" [disabled]="!form.valid || isLoading" type="submit" class="btn btn-success pull-right">Save</button>
+                            <button (click)="onCancel()" [disabled]="isLoading" class="btn btn-error pull-right">Cancel</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

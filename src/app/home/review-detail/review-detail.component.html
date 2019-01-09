@@ -1,0 +1,88 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Review</h4>
+                        <p class="category">Check user review and enable/disable it.</p>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="row bottom-line" *ngIf="userInfo">
+                            <div class="col-md-1">
+                                User
+                            </div>
+                            <div class="col-md-2">
+                                <img class="img-circle img-container avatar" [src]="userInfo && userInfo.Avatar || '/assets/img/placeholder.png'" alt="User avatar">
+                            </div>
+                            <div class="col-md-9">
+                                <p class="text-primary">{{userInfo.Username || 'No Name'}}</p>
+                                <p class="text-muted">{{userInfo.Email}}</p>
+                                <p class="text-muted">{{userInfo.Country || ''}}</p>
+                            </div>
+                        </div>
+                        <div class="row bottom-line" *ngIf="!itemInfo">
+                            <div class="col-md-1">
+                                {{reviewInfo.ParentName}}
+                            </div>
+                            <div class="col-md-1">
+                                <span class="text-danger">Removed</span>
+                            </div>
+                        </div>
+                        <div class="row bottom-line" *ngIf="itemInfo">
+                            <div class="col-md-1">
+                                {{reviewInfo.ParentName}}
+                            </div>
+                            <div class="col-md-2">
+                                <img class="img-container rounded img-raised item-image" [src]="itemInfo && itemInfo.ImageFullPath || '/assets/img/placeholder.png'" alt="Placeholder">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-1">Title</div>
+                                    <div class="col-md-8">
+                                        <a (click)="onClickItem()">{{itemInfo.Name}}</a>
+                                    </div>
+                                    <div class="col-md-1">Visited Count</div>
+                                    <div class="col-md-1">
+                                        <p class="text-primary">{{itemInfo.VisitedCount || 0}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1">App Link</div>
+                                    <div class="col-md-11">
+                                        <a [href]="itemInfo.AppLink" target="_blank">{{itemInfo.AppLink}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tim-typo bottom-line">
+                            <span class="tim-note">Like</span>
+                            <blockquote>
+                                <p>{{reviewInfo.Like}}</p>
+                            </blockquote>
+                        </div>
+                        <div class="tim-typo bottom-line">
+                            <span class="tim-note">Dislike</span>
+                            <blockquote>
+                                <p>{{reviewInfo.Dislike}}</p>
+                            </blockquote>
+                        </div>
+                        <div class="tim-typo">
+                            <span class="tim-note">Rate</span>
+                            <p class="text-success">{{reviewInfo.Rate}}</p>
+                        </div>
+                        <button (click)="onChangeState()" [disabled]="loading" class="btn btn-danger pull-right">
+                            <i class="material-icons" *ngIf="reviewInfo.Enable">block</i>
+                            <i class="material-icons" *ngIf="!reviewInfo.Enable">check</i>
+                            {{btnTitle}}
+                        </button>
+                        <button (click)="onCancel()" [disabled]="loading" class="btn btn-error pull-right">Cancel</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">
+                            Pilot List
+                        </h4>
+                        <p class="category">There are list of registered pilots on our database.</p>
+                    </div>
+                    <div class="content-table table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">No</th>
+                                    <th class="col-md-1">Photo</th>
+                                    <th class="col-md-2">Name</th>
+                                    <th class="col-md-2">Email</th>
+                                    <th calss="col-md-1">Membership</th>
+                                    <th calss="col-md-1">Payout</th>
+                                    <th calss="col-md-1">QR scanned</th>
+                                    <th calss="col-md-1">Wavers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of userList, let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                        <img class="img-circle img-container" [src]="user.photo_download_url" alt="User Photo">
+                                    </td>
+                                    <!--<td><a [routerLink]="['/home/user/', 'detail', user.uid]">{{user.Username}}</a></td>-->
+                                    <td>{{user.first_name}} {{user.last_name}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.membership}}</td>
+                                    <td>$ {{user.commission_payout}}</td>
+                                    <td>{{user.qr_scanned_count}}</td>
+                                    <td>{{user.wavers_count}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<button [routerLink]="['/home/user/', 'new', '']" title="Add User" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">person_add</i>
+                                Add User
+                            </button>
+-->
