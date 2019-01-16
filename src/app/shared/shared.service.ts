@@ -758,4 +758,11 @@ export class SharedService {
     return this.af.database.list('/waves');
   }
 
+  /**
+   * all issues
+   */
+  get allIssues(): FirebaseListObservable<any> {
+    return this.af.database.list('/issues');
+  }
+
 }

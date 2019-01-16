@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">
+                            Issue List
+                        </h4>
+                        <p class="category">There are list of registered issues on our database.</p>
+                    </div>
+                    <div class="content-table table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">No</th>
+                                    <th class="col-md-2">Name</th>
+                                    <th class="col-md-2">Email</th>
+                                    <th calss="col-md-5">Issue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let issue of issueList, let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{issue.first_name}} {{issue.last_name}}</td>
+                                    <td>{{issue.email}}</td>
+                                    <td>{{issue.issue}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<button [routerLink]="['/home/user/', 'new', '']" title="Add User" class="btn btn-white btn-simple pull-right">
+                                <i class="material-icons">person_add</i>
+                                Add User
+                            </button>
+-->

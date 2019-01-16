@@ -5,6 +5,7 @@ export const menuItems = [
     { path: 'pilots',      title: 'Pilots',        icon: 'people' },
     { path: 'wavers',      title: 'Wavers',        icon: 'people' },
     { path: 'waves',      title: 'Waves',        icon: 'people' },
+    { path: 'issues',      title: 'Issues',        icon: 'report' },
     // { path: 'carousels',  title: 'Carousels',    icon: 'polymer' },
     // { path: 'casinos',    title: 'Casinos',      icon: 'casino' },
     // { path: 'bonusgames', title: 'Bonus Games',  icon: 'videogame_asset' },

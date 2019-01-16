@@ -10,6 +10,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { PilotListComponent } from './pilot-list/pilot-list.component';
 import { WaverListComponent } from './waver-list/waver-list.component';
 import { WaveListComponent } from './wave-list/wave-list.component';
+import { IssueListComponent } from './issue-list/issue-list.component';
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupFamilyComponent } from './group-family/group-family.component';
 import { GroupTeamComponent } from './group-team/group-team.component';
@@ -38,6 +39,7 @@ const routes: Routes =[
       { path: 'pilots',                  component: PilotListComponent },
       { path: 'wavers',                  component: WaverListComponent },
       { path: 'waves',                  component: WaveListComponent },
+      { path: 'issues',                  component: IssueListComponent },
       { path: 'users/:group/:id',       component: UserListComponent },
       { path: 'user/:mode/:id',         component: UserComponent },
       { path: 'group-family/:mode/:id', component: GroupFamilyComponent },  /**mode: new/update/detail */

@@ -14,6 +14,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { PilotListComponent } from './pilot-list/pilot-list.component';
 import { WaverListComponent } from './waver-list/waver-list.component';
 import { WaveListComponent } from './wave-list/wave-list.component';
+import { IssueListComponent } from './issue-list/issue-list.component';
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupFamilyComponent } from './group-family/group-family.component';
 import { GroupTeamComponent } from './group-team/group-team.component';
@@ -63,6 +64,7 @@ import { SelectRecommendCasinoComponent } from './select-recommend-casino/select
     PilotListComponent,
     WaverListComponent,
     WaveListComponent,
+    IssueListComponent,
     GroupListComponent,
     GroupFamilyComponent, 
     GroupTeamComponent, 
