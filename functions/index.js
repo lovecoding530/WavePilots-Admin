@@ -33,6 +33,9 @@ const actionCodeSettings = {
     handleCodeInApp: true,
 };
 
+/**
+ * Sends a welcome email when user create.
+ */
 exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
     const email = user.email; // The email of the user.
     const displayName = user.displayName; // The display name of the user.
@@ -81,3 +84,21 @@ function removeParam(key, sourceURL) {
     }
     return resultUrl;
 }
+
+/**
+ * trigger when waver request to join to wave
+ */
+exports.waverActivityCreate = functions.database.ref('/wavers_activity/{waveId}/{waverId}').onCreate((snapshot, context)=>{
+    const waveId = context.params.waveId;
+    const waverId = context.params.waverId;
+
+})
+
+/**
+ * trigger when pilot accept waver's join request
+ */
+exports.catchedWaveCreate = functions.database.ref('/catched_waves/{waverId}/{waveId}').onCreate((snapshot, context)=>{
+    const waverId = context.params.waverId;
+    const waveId = context.params.waveId;
+    
+})

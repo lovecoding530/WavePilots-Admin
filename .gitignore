@@ -65,3 +65,4 @@ node_modules/
 .env
 node_modules/
 wavepilots-67f1c-firebase-adminsdk-egy01-89a701c1d0.json
+dist/
