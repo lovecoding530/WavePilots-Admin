@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthComponent } from './auth/auth.component';
+import { UsermgmtComponent } from './usermgmt/usermgmt.component';
 import { RegisterComponent } from './auth/register/register.component';
 // import { PageNotFoundComponent } from './not-found/not-found.component';
 
@@ -15,6 +16,7 @@ const routes: Routes =[
       { path: 'home',         component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'login',        component: LoginComponent },
       { path: 'register',     component: RegisterComponent },
+      { path: 'usermgmt',     component: UsermgmtComponent },
       { path: '',   redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

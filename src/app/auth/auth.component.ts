@@ -11,6 +11,7 @@ export class AuthComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("AuthComponent");
   }
 
 }

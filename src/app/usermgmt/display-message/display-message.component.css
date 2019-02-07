@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    height: 100vh;
+    padding: 50px 0px;
+}
+
+.header-img {
+
+}
+
+.title {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.message-container {
+    border-radius: 10px;
+    border: solid 1px;
+    padding: 20px;
+}
+
+.message {
+    font-size: 20px;
+}
+
+.footer {
+    margin: 20px 0px;
+}

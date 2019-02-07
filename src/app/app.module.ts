@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './not-found/not-found.component';
 
 import { AppRoutingModule } from './app.routing';
 import { AuthModule } from './auth/auth.module';
+import { UsermgmtModule } from './usermgmt/usermgmt.module';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -28,6 +29,7 @@ import { firebaseConfig } from './app.constants';
 
     AuthModule,
     HomeModule,
+    UsermgmtModule,
     SharedModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
