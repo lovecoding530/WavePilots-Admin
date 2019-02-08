@@ -31,18 +31,9 @@ export class WaverListComponent implements OnInit {
     
   }
 
-  onEnableUser(user) {
+  onDeleteUser(user) {
     this.loading = true;
     this.sharedService.changeUserState(user, false).then(_ => {
-      this.loading = false;
-    }).catch(_ => {
-      this.loading = false;
-    })
-  }
-
-  onDisableUser(user) {
-    this.loading = true;
-    this.sharedService.changeUserState(user, true).then(_ => {
       this.loading = false;
     }).catch(_ => {
       this.loading = false;

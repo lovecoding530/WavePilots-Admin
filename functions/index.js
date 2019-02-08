@@ -79,24 +79,3 @@ exports.sendResetPasswordEmail = functions.https.onCall(async (data, context) =>
 
     return null;
 })
-
-/**
- * remove parameter from url
- */
-function removeParam(key, sourceURL) {
-    var resultUrl = sourceURL.split("?")[0];
-    var params = [];
-    var queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
-    if (queryString !== "") {
-        params = queryString.split("&");
-        for (var i = params.length - 1; i >= 0; i -= 1) {
-            let param = params[i].split("=")[0];
-            if (param === key) {
-                params.splice(i, 1);
-            }
-        }
-        resultUrl = resultUrl + "?" + params.join("&");
-    }
-    return resultUrl;
-}
-
