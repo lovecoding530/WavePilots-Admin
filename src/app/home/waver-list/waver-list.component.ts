@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SharedService } from '../../shared/shared.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-waver-list',
@@ -31,9 +32,18 @@ export class WaverListComponent implements OnInit {
     
   }
 
-  onDeleteUser(user) {
+  onEnableUser(user) {
     this.loading = true;
     this.sharedService.changeUserState(user, false).then(_ => {
+      this.loading = false;
+    }).catch(_ => {
+      this.loading = false;
+    })
+  }
+
+  onDisableUser(user) {
+    this.loading = true;
+    this.sharedService.changeUserState(user, true).then(_ => {
       this.loading = false;
     }).catch(_ => {
       this.loading = false;

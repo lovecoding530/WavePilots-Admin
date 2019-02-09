@@ -41,14 +41,26 @@
                                     <td>{{user.joined_waves_count}}</td>
                                     <td>
                                         <button 
+                                            *ngIf="user.is_disabled"
                                             [disabled]="this.loading" 
                                             class="btn btn-danger btn-xs" 
                                             rel="tooltip" 
-                                            title="Delete user" 
+                                            title="Enable user" 
                                             type="button"
-                                            (click)="onDeleteUser(user)"
+                                            (click)="onEnableUser(user)"
                                         >
-                                            <i class="material-icons">delete</i>
+                                            <i class="material-icons">check</i>
+                                        </button>
+                                        <button 
+                                            *ngIf="!user.is_disabled"
+                                            [disabled]="this.loading" 
+                                            class="btn btn-danger btn-xs" 
+                                            rel="tooltip" 
+                                            title="Disable user" 
+                                            type="button"
+                                            (click)="onDisableUser(user)"
+                                        >
+                                            <i class="material-icons">block</i>
                                         </button>
                                     </td>
                                 </tr>

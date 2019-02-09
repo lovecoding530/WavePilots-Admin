@@ -48,7 +48,7 @@ export class SharedService {
 
   changeUserState(user: any, isDiabled: boolean) {
     return this.af.database.object(`users/${user.$key}`).update(
-      { isDisabled: isDiabled}
+      { is_disabled: isDiabled}
     )
   }
 
