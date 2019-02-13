@@ -55,6 +55,19 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate(async (user) => {
 });
 
 /**
+ * deleting user
+ */
+exports.sendByeEmail = functions.auth.user().onDelete(async (user) => {
+    console.log(user);
+
+    const email = user.email; // The email of the user.
+    const uid = user.uid;
+    
+    //delete user from database
+    var db = admin.database();
+});
+
+/**
  * reset password
  */
 exports.sendResetPasswordEmail = functions.https.onCall(async (data, context) => {
