@@ -58,12 +58,21 @@ export class ResetPasswordComponent implements OnInit {
       // TODO: If a continue URL is available, display a button which on
       // click redirects the user back to the app via continueUrl with
       // additional state determined from that URL's parameters.
-      this.router.navigate(['/usermgmt/display-message', {title: "Resetted password", message: "Successfully resetted your password"}]);
+      this.router.navigate(['/usermgmt/display-message', 
+        {
+          title: "New Password Reset Successfully", 
+          message: "Your New password is ready for you to Log in."
+        }
+      ]);
     }).catch((error) => {
       // Error occurred during confirmation. The code might have expired or the
       // password is too weak.
-      this.router.navigate(['/usermgmt/display-message', {title: "Try resetting your password", message: error.message}]);
+      this.router.navigate(['/usermgmt/display-message', 
+        {
+          title: "Try resetting your password", 
+          message: error.message
+        }
+      ]);
     });
-    
   }
 }
