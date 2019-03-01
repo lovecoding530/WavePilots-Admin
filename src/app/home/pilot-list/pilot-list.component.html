@@ -3,7 +3,7 @@
         <div class="row">            
             <div class="col-md-12">
                 <div class="card card-plain">
-                    <div class="card-header" data-background-color="red">
+                    <div class="card-header" style="background-color: #3184ED">
                         <h4 class="title">
                             Pilot List
                         </h4>
@@ -17,6 +17,7 @@
                                     <th class="col-md-1">Photo</th>
                                     <th class="col-md-2">Name</th>
                                     <th class="col-md-2">Email</th>
+                                    <th class="col-md-2">Phone Number</th>
                                     <th calss="col-md-1">Membership</th>
                                     <th calss="col-md-1">Payout</th>
                                     <th calss="col-md-1">QR scanned</th>
@@ -33,6 +34,7 @@
                                     <!--<td><a [routerLink]="['/home/user/', 'detail', user.uid]">{{user.Username}}</a></td>-->
                                     <td>{{user.first_name}} {{user.last_name}}</td>
                                     <td>{{user.email}}</td>
+                                    <td>{{user.phone_number}}</td>
                                     <td>{{user.membership}}</td>
                                     <td>$ {{user.commission_payout}}</td>
                                     <td>{{user.qr_scanned_count}}</td>
