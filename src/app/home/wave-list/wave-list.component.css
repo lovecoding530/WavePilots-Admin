@@ -15,6 +15,7 @@ th {
     border-left: solid 1px #999;
     background: gray;
     color: white;
+    padding: 10px !important;
 }
 td {
     border-left: solid 1px #E1E1E1;
@@ -24,4 +25,11 @@ td {
     border-bottom: 1px solid red; 
     line-height: 0.1em;
     margin: 10px 0 20px; 
+}
+
+th>input {
+    height: 24px;
+    line-height: 20px;
+    color: black;
+    width: 100%;
 }

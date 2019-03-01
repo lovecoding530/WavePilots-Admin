@@ -11,6 +11,9 @@ export class IssueListComponent implements OnInit {
   issueList   : any;
   loading    : boolean;
 
+  filterValues = {};
+  filteredIssueList : any;
+
   constructor(
     private sharedService: SharedService
   ) {
@@ -21,26 +24,21 @@ export class IssueListComponent implements OnInit {
     this.loading = true;
     this.sharedService.allIssues.subscribe((res) => {
       this.issueList = res;
+      this.filteredIssueList = [...this.issueList];
+      for (const issue of this.issueList) {
+        issue.user_name = `${issue.first_name} ${issue.last_name}`
+      }
       this.loading =false;
       console.log(res);
     });
   }
 
-  onEnableUser(user) {
-    this.loading = true;
-    this.sharedService.changeUserState(user, false).then(_ => {
-      this.loading = false;
-    }).catch(_ => {
-      this.loading = false;
-    })
-  }
-
-  onDisableUser(user) {
-    this.loading = true;
-    this.sharedService.changeUserState(user, true).then(_ => {
-      this.loading = false;
-    }).catch(_ => {
-      this.loading = false;
-    })
+  onFilter(event) {
+    this.filterValues[event.target.name] = event.target.value;
+    this.filteredIssueList = [...this.issueList];
+    for (const key of Object.keys(this.filterValues)) {
+      let filterVal = this.filterValues[key];
+      this.filteredIssueList = this.filteredIssueList.filter((issue)=>issue[key].includes(filterVal));
+    }
   }
 }

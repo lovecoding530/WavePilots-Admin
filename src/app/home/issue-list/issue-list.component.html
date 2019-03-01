@@ -14,17 +14,29 @@
                             <thead>
                                 <tr>
                                     <th class="col-md-1">No</th>
-                                    <th class="col-md-2">User Type</th>
-                                    <th class="col-md-2">Name</th>
-                                    <th class="col-md-2">Email</th>
-                                    <th calss="col-md-5">Issue</th>
+                                    <th class="col-md-2">
+                                        <span href="#">User Type</span>
+                                        <input type="text" name="user_type" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-2">
+                                        <span href="#">User Name</span>
+                                        <input type="text" name="user_name" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-2">
+                                        <span href="#">Email</span>
+                                        <input type="text" name="email" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-3">
+                                        <span href="#">Issue</span>
+                                        <input type="text" name="issue" (keyup)="onFilter($event)"/>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let issue of issueList, let i = index">
+                                <tr *ngFor="let issue of filteredIssueList, let i = index">
                                     <td>{{i+1}}</td>
                                     <td>{{issue.user_type}}</td>
-                                    <td>{{issue.first_name}} {{issue.last_name}}</td>
+                                    <td>{{issue.user_name}}</td>
                                     <td>{{issue.email}}</td>
                                     <td>{{issue.issue}}</td>
                                 </tr>

@@ -11,6 +11,9 @@ export class PilotListComponent implements OnInit {
   userList   : any;
   loading    : boolean;
 
+  filterValues = {};
+  filteredUserList : any;
+
   constructor(
     private sharedService: SharedService
   ) {
@@ -21,7 +24,9 @@ export class PilotListComponent implements OnInit {
     this.loading = true;
     this.sharedService.allUsers.subscribe((res) => {
       this.userList = res.filter(user=>user.type=="pilot");
+      this.filteredUserList = [...this.userList];
       for (const user of this.userList) {
+        user.name = `${user.first_name} ${user.last_name}`
         user.photo_download_url = "assets/img/new_logo.png"
         this.sharedService.downloadUrl(user.photo_url).then(url=>user.photo_download_url = url)
       }
@@ -47,5 +52,14 @@ export class PilotListComponent implements OnInit {
     }).catch(_ => {
       this.loading = false;
     })
+  }
+
+  onFilter(event) {
+    this.filterValues[event.target.name] = event.target.value;
+    this.filteredUserList = [...this.userList];
+    for (const key of Object.keys(this.filterValues)) {
+      let filterVal = this.filterValues[key];
+      this.filteredUserList = this.filteredUserList.filter((user)=>user[key].includes(filterVal));
+    }
   }
 }

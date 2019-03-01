@@ -15,18 +15,30 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Photo</th>
-                                    <th class="col-md-2">Pilot Name</th>
-                                    <th class="col-md-1">Type</th>
-                                    <th class="col-md-1">City</th>
-                                    <th class="col-md-1">Wide Type</th>
-                                    <th class="col-md-1">Wavers</th>
-                                    <th class="col-md-2">Bio</th>
+                                    <th class="col-md-1">
+                                        <span href="#">Pilot Name</span>
+                                        <input type="text" name="pilot_name" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-1">
+                                        <span href="#">Type</span>
+                                        <input type="text" name="type" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-1">
+                                        <span href="#">City</span>
+                                        <input type="text" name="city" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-1">
+                                        <span href="#">Wide Type</span>
+                                        <input type="text" name="wide_type" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-2" width="400">Bio</th>
                                     <th class="col-md-2">Conditions</th>
                                     <th class="col-md-2">Deal for wavers</th>
+                                    <th class="col-md-1">Wavers</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let wave of waveList, let i = index">
+                                <tr *ngFor="let wave of filteredWaveList, let i = index">
                                     <td>{{i+1}}</td>
                                     <td>
                                         <img class="img-circle img-container" [src]="wave.photo_download_url" alt="Wave Photo">
@@ -35,10 +47,10 @@
                                     <td>{{wave.type}}</td>
                                     <td>{{wave.city}}</td>
                                     <td>{{wave.wide_type}}</td>
-                                    <td>{{wave.wavers_count}}</td>
                                     <td>{{wave.bio}}</td>
                                     <td>{{wave.conditions}}</td>
                                     <td style="white-space: pre-line;">{{wave.deal}}</td>
+                                    <td>{{wave.wavers_count}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -48,10 +60,3 @@
         </div>
     </div>
 </div>
-
-<!--
-<button [routerLink]="['/home/user/', 'new', '']" title="Add User" class="btn btn-white btn-simple pull-right">
-                                <i class="material-icons">person_add</i>
-                                Add User
-                            </button>
--->

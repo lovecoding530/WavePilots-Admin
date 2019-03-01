@@ -13,10 +13,16 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th class="col-md-1">No</th>
-                                    <th class="col-md-1">Photo</th>
-                                    <th class="col-md-2">Name</th>
-                                    <th class="col-md-2">Email</th>
+                                    <th>No</th>
+                                    <th>Photo</th>
+                                    <th class="col-md-2">
+                                        <span href="#">Name</span>
+                                        <input type="text" name="name" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-2">
+                                        <span href="#">Email</span>
+                                        <input type="text" name="email" (keyup)="onFilter($event)"/>
+                                    </th>
                                     <th calss="col-md-1">Membership</th>
                                     <th calss="col-md-1">Balance</th>
                                     <th calss="col-md-1">Earned</th>
@@ -26,13 +32,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let user of userList, let i = index">
+                                <tr *ngFor="let user of filteredUserList, let i = index">
                                     <td>{{i+1}}</td>
                                     <td>
                                         <img class="img-circle img-container" [src]="user.photo_download_url" alt="User Photo">
                                     </td>
                                     <!--<td><a [routerLink]="['/home/user/', 'detail', user.uid]">{{user.Username}}</a></td>-->
-                                    <td>{{user.first_name}} {{user.last_name}}</td>
+                                    <td>{{user.name}}</td>
                                     <td>{{user.email}}</td>
                                     <td>{{user.membership}}</td>
                                     <td>$ {{user.balance}}</td>

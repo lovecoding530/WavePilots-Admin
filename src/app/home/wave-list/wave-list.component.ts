@@ -11,6 +11,9 @@ export class WaveListComponent implements OnInit {
   waveList   : any;
   loading    : boolean;
 
+  filterValues = {};
+  filteredWaveList : any;
+
   constructor(
     private sharedService: SharedService
   ) {
@@ -21,6 +24,7 @@ export class WaveListComponent implements OnInit {
     this.loading = true;
     this.sharedService.allWaves.subscribe((res) => {
       this.waveList = res;
+      this.filteredWaveList = [...this.waveList];
       for (const wave of this.waveList) {
         wave.photo_download_url = "assets/img/new_logo.png"
         this.sharedService.downloadUrl(wave.photo_url).then(url=>wave.photo_download_url = url)
@@ -36,24 +40,14 @@ export class WaveListComponent implements OnInit {
       this.loading =false;
       console.log(res);
     });
-    
   }
 
-  onEnableUser(user) {
-    this.loading = true;
-    this.sharedService.changeUserState(user, false).then(_ => {
-      this.loading = false;
-    }).catch(_ => {
-      this.loading = false;
-    })
-  }
-
-  onDisableUser(user) {
-    this.loading = true;
-    this.sharedService.changeUserState(user, true).then(_ => {
-      this.loading = false;
-    }).catch(_ => {
-      this.loading = false;
-    })
+  onFilter(event) {
+    this.filterValues[event.target.name] = event.target.value;
+    this.filteredWaveList = [...this.waveList];
+    for (const key of Object.keys(this.filterValues)) {
+      let filterVal = this.filterValues[key];
+      this.filteredWaveList = this.filteredWaveList.filter((wave)=>wave[key].includes(filterVal));
+    }
   }
 }
