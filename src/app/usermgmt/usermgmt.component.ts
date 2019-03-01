@@ -124,7 +124,7 @@ export class UsermgmtComponent implements OnInit {
       // TODO: If a continue URL is available, display a button which on
       // click redirects the user back to the app via continueUrl with
       // additional state determined from that URL's parameters.
-      this.router.navigate(['/usermgmt/display-message', {title: "Verified Email", message: "Your email has been verified.\nYou can contiune to use the app"}]);
+      this.router.navigate(['/usermgmt/display-message', {title: "Verified Email", message: "Your email has been verified.\nYou can continue to use the app"}]);
     }).catch((error) => {
       // Code is invalid or expired. Ask the user to verify their email address
       // again.

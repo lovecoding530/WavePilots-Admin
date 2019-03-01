@@ -31,3 +31,12 @@
 .footer {
     margin: 20px 0px;
 }
+
+@media (max-width: 480px) {
+    .my-container {
+        padding: 20px 10px;
+    }
+    .hide-in-phone {
+        display: none
+    };
+}
