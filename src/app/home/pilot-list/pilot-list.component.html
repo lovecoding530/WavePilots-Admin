@@ -45,7 +45,9 @@
                                     <td>{{user.email}}</td>
                                     <td>{{user.phone_number}}</td>
                                     <td>{{user.membership}}</td>
-                                    <td>$ {{user.commission_payout}}</td>
+                                    <td>
+                                        <a [routerLink]="['/home/money-activities/', user['$key']]">$ {{user.commission_payout}}</a>
+                                    </td>
                                     <td>{{user.qr_scanned_count}}</td>
                                     <td>{{user.wavers_count}}</td>
                                     <td>

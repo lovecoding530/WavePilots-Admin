@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header" style="background-color: #3184ED">
+                        <h4 class="title">
+                            Money Activity List
+                        </h4>
+                        <p class="category">There are list of registered money activities on our database.</p>
+                    </div>
+                    <div class="content-table table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1">No</th>
+                                    <th class="col-md-2">
+                                        <span href="#">Type</span>
+                                        <input type="text" name="type" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-2">
+                                        <span href="#">Title</span>
+                                        <input type="text" name="title" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-3">
+                                        <span href="#">Message</span>
+                                        <input type="text" name="message" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-1">Amount</th>
+                                    <th class="col-md-1">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let activity of filteredActivityList, let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{activity.type}}</td>
+                                    <td>{{activity.title}}</td>
+                                    <td>{{activity.message}}</td>
+                                    <td>$ {{activity.amount}}</td>
+                                    <td>{{activity.timeStr}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

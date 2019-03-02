@@ -765,4 +765,10 @@ export class SharedService {
     return this.af.database.list('/issues');
   }
 
+  /**
+   * all issues
+   */
+  getMoneyActivities(user_id): FirebaseListObservable<any> {
+    return this.af.database.list('/money_activities/'+user_id);
+  }
 }

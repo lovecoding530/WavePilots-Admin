@@ -24,6 +24,7 @@ export class PilotListComponent implements OnInit {
     this.loading = true;
     this.sharedService.allUsers.subscribe((res) => {
       this.userList = res.filter(user=>user.type=="pilot");
+      console.log(this.userList);
       this.filteredUserList = [...this.userList];
       for (const user of this.userList) {
         user.name = `${user.first_name} ${user.last_name}`

@@ -10,6 +10,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { PilotListComponent } from './pilot-list/pilot-list.component';
 import { WaverListComponent } from './waver-list/waver-list.component';
 import { WaveListComponent } from './wave-list/wave-list.component';
+import { MoneyActivityListComponent } from './money-activity-list/money-activity-list.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupFamilyComponent } from './group-family/group-family.component';
@@ -39,6 +40,7 @@ const routes: Routes =[
       { path: 'pilots',                  component: PilotListComponent },
       { path: 'wavers',                  component: WaverListComponent },
       { path: 'waves',                  component: WaveListComponent },
+      { path: 'money-activities/:user-id',        component: MoneyActivityListComponent },
       { path: 'issues',                  component: IssueListComponent },
       { path: 'users/:group/:id',       component: UserListComponent },
       { path: 'user/:mode/:id',         component: UserComponent },

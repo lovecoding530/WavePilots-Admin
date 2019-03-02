@@ -42,7 +42,9 @@
                                     <td>{{user.email}}</td>
                                     <td>{{user.membership}}</td>
                                     <td>$ {{user.balance}}</td>
-                                    <td>$ {{user.commission_earned}}</td>
+                                    <td>
+                                        <a [routerLink]="['/home/money-activities/', user['$key']]">$ {{user.commission_earned}}</a>
+                                    </td>
                                     <td>{{user.qr_shared_count}}</td>
                                     <td>{{user.joined_waves_count}}</td>
                                     <td>
