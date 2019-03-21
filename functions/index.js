@@ -65,6 +65,12 @@ exports.sendByeEmail = functions.auth.user().onDelete(async (user) => {
     
     //delete user from database
     var db = admin.database();
+    db.ref(`/users/${uid}/is_deleted`).set(true);
+    db.ref(`/waves/${uid}`).once("value", (snapshot) => {
+        if(snapshot.exists()){
+            db.ref(`/waves/${uid}/is_deleted`).set(true);
+        }
+    });
 });
 
 /**
