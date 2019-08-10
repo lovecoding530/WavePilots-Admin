@@ -26,7 +26,7 @@ export class IssueListComponent implements OnInit {
       this.issueList = res;
       this.filteredIssueList = [...this.issueList];
       for (const issue of this.issueList) {
-        issue.user_name = `${issue.first_name} ${issue.last_name}`
+        issue.user_name = `${issue.last_name}`
       }
       this.loading =false;
       console.log(res);

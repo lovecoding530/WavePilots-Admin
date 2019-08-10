@@ -27,7 +27,8 @@ export class PilotListComponent implements OnInit {
       console.log(this.userList);
       this.filteredUserList = [...this.userList];
       for (const user of this.userList) {
-        user.name = `${user.first_name} ${user.last_name}`
+        user.businame = `${user.first_name}`
+        user.fullname = `${user.last_name}`
         user.photo_download_url = "assets/img/new_logo.png"
         this.sharedService.downloadUrl(user.photo_url).then(url=>user.photo_download_url = url)
       }

@@ -16,8 +16,12 @@
                                     <th>No</th>
                                     <th>Photo</th>
                                     <th class="col-md-2">
-                                        <span href="#">Name</span>
-                                        <input type="text" name="name" (keyup)="onFilter($event)"/>
+                                        <span href="#">Business Name</span>
+                                        <input type="text" name="businame" (keyup)="onFilter($event)"/>
+                                    </th>
+                                    <th class="col-md-2">
+                                        <span href="#">Full Name</span>
+                                        <input type="text" name="fullname" (keyup)="onFilter($event)"/>
                                     </th>
                                     <th class="col-md-2">
                                         <span href="#">Email</span>
@@ -41,7 +45,8 @@
                                         <img class="img-circle img-container" [src]="user.photo_download_url" alt="User Photo">
                                     </td>
                                     <!--<td><a [routerLink]="['/home/user/', 'detail', user.uid]">{{user.Username}}</a></td>-->
-                                    <td>{{user.name}}</td>
+                                    <td>{{user.businame}}</td>
+                                    <td>{{user.fullname}}</td>
                                     <td>{{user.email}}</td>
                                     <td>{{user.phone_number}}</td>
                                     <td>{{user.membership}}</td>
