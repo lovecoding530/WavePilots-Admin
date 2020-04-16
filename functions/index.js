@@ -12,8 +12,8 @@ admin.initializeApp();
 // TODO: Configure the `gmail.email` and `gmail.password` Google Cloud environment variables.
 // firebase functions:config:set gmail.email="myusername@gmail.com" gmail.password="secretpassword"
 
-const gmailEmail = functions.config().gmail.email;
-const gmailPassword = functions.config().gmail.password;
+const gmailEmail = 'info@wavepilots.com'; // functions.config().gmail.email;
+const gmailPassword = 'Wavepilots23'; // functions.config().gmail.password;
 
 const mailTransport = nodemailer.createTransport({
     service: 'gmail',
@@ -22,6 +22,9 @@ const mailTransport = nodemailer.createTransport({
         pass: gmailPassword,
     },
 });
+
+const key = require('./key.json');
+const myEmail = 'info@wavepilots.com';
 
 const APP_NAME = 'WavePilots';
 
@@ -32,6 +35,28 @@ const actionCodeSettings = {
 /**
  * Sends a welcome email when user create.
  */
+// exports.sendWelcomeEmail = functions.auth.user().onCreate(async (user) => {
+//     const email = user.email; // The email of the user.
+
+//     var verificationLink = await admin.auth().generateEmailVerificationLink(email, actionCodeSettings);
+
+//     let renderedHtml = await ejs.renderFile('./templates/welcome.ejs', {verificationLink});
+
+//     const mailOptions = {
+//         from: `${APP_NAME} <noreply@wavepilots.com>`,
+//         replyTo: 'noreply@wavepilots.com',
+//         to: email,
+//         subject: `Welcome to ${APP_NAME}!`,
+//         html: renderedHtml
+//     };
+//     console.log(gmailEmail + "/" + gmailPassword);
+
+//     await mailTransport.sendMail(mailOptions);
+//     console.log('New welcome email sent to:', email);
+
+//     return null;
+// });
+
 exports.sendWelcomeEmail = functions.auth.user().onCreate(async (user) => {
     const email = user.email; // The email of the user.
 
@@ -39,19 +64,31 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate(async (user) => {
 
     let renderedHtml = await ejs.renderFile('./templates/welcome.ejs', {verificationLink});
 
-    const mailOptions = {
-        from: `${APP_NAME} <noreply@wavepilots.com>`,
-        replyTo: 'noreply@wavepilots.com',
-        to: email,
-        subject: `Welcome to ${APP_NAME}!`,
-        html: renderedHtml
-    };
-    console.log(mailOptions);
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            type: 'OAuth2',
+            user: myEmail,
+            serviceClient: key.client_id,
+            privateKey: key.private_key,
+        },
+    });
 
-    await mailTransport.sendMail(mailOptions);
-    console.log('New welcome email sent to:', email);
-
-    return null;
+    try {
+        await transporter.verify();
+        await transporter.sendMail({
+            from: `${APP_NAME} info@wavepilots.com`,
+            to: email,
+            subject: `Welcome to ${APP_NAME}!`,
+            html: renderedHtml,
+        });
+        return null;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
 });
 
 /**

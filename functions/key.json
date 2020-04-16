@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "wavepilots",
+  "private_key_id": "3cf4629ae24b466d477b7fea1d557e0035f278d3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCm7MQLHw7wCg4k\n84GrI1i3YEfRQX1JgB8IUfWsAaqWMJnO2xh30ha6oV7NMi85YbEHlIlRQhnTW2Yu\nIKlAYmLWMOPZRLdsAxUkl1eNSKuLfjrRITv1+Cl05/HX/hNAQVn8H9jSg7aKx8ic\nAPtOm7dAVgL0tHwdCFLacoY7pAbLELS2fS2p5DMG5RW/gpCq/yWYZNYB4UTvJa1A\nxV1znDwUffE82sBbmIxBoMBXfTrXxeb9+GQdHZMjqCk6T9QWfWydxXPblGMwz9a8\ntVT6jS18a/XplSDdTxncW1oJ2DHRznRlp2ZEya5erS5DMOwDa9f6LMdQgR0+F5ZV\n5bX3AUh5AgMBAAECggEAQ+EzRZx/LBDCuLcHK2tnx8ZQ3iDmDG4b8Hu3zhctYf7o\nhQxmkk8uK/20Ofhm6Mw3u6/k+VTKgL8Buc9RVFvN+nEOLsu5VSSZw/QBR/Rdwg92\nZpW/tuIQJbiuiZmKBY6tw4/F0bF7GUtt4jap+0jqR7DSaeU9NWctniSFPpqQoqGD\neeKGUMc74QIQWzv/3IQsqcppr1jGClm4ezMlfgd83AQXjF58M8ltDioIehlxzvLb\nRxs5J5v2eypnGEDAWUS+w4Ie1J44mN/PNtKOQBvOiNk6V2pN1FgfEsY+14uW8/vm\nLaGbLj/lhwHiJU3Oq5byqsXxPg0ZM4sd28c4BgZiWwKBgQDdrYogk6GWEm8PH2Zd\nGCN52cwr3YyIhJ3VLGChsDoBkbtDaqrP5JQpQQct0CjhSCGN+1U1OARcAkoh2clT\njsClS0uoQnZT4dFXzrOAj/ZWgfu/+Owx4guiVA9WDvrmIv8CxOEWFtUd2QSqsT5E\nZh1LPzxmZlm4Sv4cIMzwV1OtiwKBgQDAxQbRZy8aJ6fkGWd+6+2Amue5v7cXUw+k\nqRN07GLoJoGwrxeRk3L65zX6U/BoLWlHgQkglXcQObvMYaLnz9VBAZ10I70SkZ76\nviJJgUXXkoUe6d3/oIDePmHB2InnFwe2lUiKiUlo/YGUf6KDe7CrtjFRj1Ap8I5E\nEyYnn/PqiwKBgFnycHmHbalXEXkxZHehs8NdfFrQKpW6OdClkRAKUX8Rgsp4HZb9\nSKD0odUVAYFnozXZJVnSwPIUe8AAfpBI/CIVyz0auqiOmELovC0OPQYc9+mNN0mG\nTvIu6YohyexXhuG4wRwVZ6QUyq/3+ywFwx0lK3zhSsZcp38CUCW1SV7BAoGAHEIF\noNa2YegkRVyv/jwJgcuzYlhHN6UWavXaA07PpOZYJpVUKCPsO/l+wSZi3HKjtzak\nJuGiJX/BFtHNNpwRz8iz0x2WDs3H90u97PaFTXeOCh0QTPOzUGDmparfdD+9ArfZ\nfW1olHps717SbOHJ4TIBAsq2Xp+Dy1jfQ/m/oMcCgYEAvbf2o+LjMRu0PzjvKbVW\n7nJkdlwiGlyo2tR6A7fXBTxnsUwb99qTr+7oiltbtcUQj/UBL30jSNCD08w/oUmH\nMHn6MbKuIl2rvEhxs3KV6/RY/WlGISFuUNxQV3Q7nkY+CWU9p8fFaewI+4+ZdEMq\nRqW8tihlCLJ4H7aWCqU8eUA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "emailservice@wavepilots.iam.gserviceaccount.com",
+  "client_id": "110373964777136629047",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/emailservice%40wavepilots.iam.gserviceaccount.com"
+}
